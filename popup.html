@@ -6,16 +6,27 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h2>Quick Form Filler</h2>
-    <form id="form">
-      <label for="key">Key:</label>
-      <input type="text" id="key" required />
-      <br />
-      <label for="value">Value:</label>
-      <input type="text" id="value" required />
-      <br />
-      <button type="button" id="addButton">Add</button>
-      <button type="button" id="test-btn">TestBtn</button>
-    </form>
+    <div class="title">
+      <h2 class="title-text">Quick Form Filler</h2>
+      <div class="ninja-png">
+        <img id="ninja" src="assets/ninja.png" alt="ninja" />
+      </div>
+      <button type="button" class="bubbly-button" id="view-shortcut-btn">
+        View Your Shortcuts
+      </button>
+      <div class="keyValInputDiv">
+        <h5 id="addNewShortcutText">Add New Shortcut</h5>
+        <div class="keyValDiv">
+          <div class="inputBoxKey">
+            <input type="text" required="required" id="key" placeholder="Key" />
+          </div>
+          <div class="inputBoxValue">
+            <textarea name="value" id="value" placeholder="value"></textarea>
+          </div>
+          
+        </div>
+        <button type="button" id="addButton" class="bubbly-button-add">Add</button>
+      </div>
+    </div>
   </body>
 </html>

@@ -1,4 +1,125 @@
 body{
     height: 400px;
-    width: 400px;
+    width: 300px;
+    background-color: #383c40;
+    margin-top: 0;
 }
+.title {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.title-text {
+    display: flex;
+    color: white;
+}
+.ninja-png{
+    height: 200px;
+    width: 200px;
+}
+
+#ninja{
+    height: 200px;
+    width: 200px;
+}
+#view-shortcut-btn{
+    margin-top: 10px;
+}
+
+/* input css start */
+.keyValInputDiv{
+    width: 100%;
+    color: white;
+}
+#addNewShortcutText{
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+}
+.keyValDiv{
+    padding: 5px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.inputBoxKey input{
+    width: 90%;
+    background: #383c40;
+    color: white;
+}
+.inputBoxValue textarea{
+    width: 91%;
+    max-width: 300px;
+    background: #383c40;
+    color: white;
+    overflow-wrap: break-word;
+}
+
+/* input css end */
+
+/* view list btn start */
+.bubbly-button {
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  display: inline-block;
+  font-size: 1em;
+  padding: 1em 2em;
+  margin-top: 100px;
+  margin-bottom: 10px;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #ff0081;
+  color: #fff;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
+  box-shadow: 0 2px 25px rgba(255, 0, 130, 0.5);
+}
+
+.bubbly-button:focus {
+  outline: 0;
+}
+
+.bubbly-button:active {
+  transform: scale(0.9);
+  background-color: #e6006b;
+  box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
+}
+/* view list btn end */
+
+/* add btn css start */
+.bubbly-button-add {
+  font-family: 'Helvetica', 'Arial', sans-serif;
+  display: inline-block;
+  font-size: 1em;
+  padding: 0.5em 2em;
+  margin-top: 100px;
+  margin-bottom: 10px;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #ff0081;
+  color: #fff;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
+  box-shadow: 0 2px 25px rgba(255, 0, 130, 0.5);
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.bubbly-button:focus {
+  outline: 0;
+}
+
+.bubbly-button:active {
+  transform: scale(0.9);
+  background-color: #e6006b;
+  box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
+}
+/* add btn css start */
