@@ -98,3 +98,9 @@ h1 {
 .olcards li .content .text {
   grid-area: text;
 }
+
+
+/* by me */
+.editDeleteBtnDiv{
+  margin-left: auto;
+}
