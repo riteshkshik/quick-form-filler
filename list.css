@@ -97,6 +97,7 @@ h1 {
 }
 .olcards li .content .text {
   grid-area: text;
+  font-size: 1.05em;
 }
 
 
@@ -104,3 +105,40 @@ h1 {
 .editDeleteBtnDiv{
   margin-left: auto;
 }
+
+
+/* edit popup start */
+.editPopup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  z-index: 2;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.editPopup input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.editPopup textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.editPopup button {
+  padding: 8px 15px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+/* edit popup end */

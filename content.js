@@ -9,8 +9,16 @@ console.log("we are on google .com")
 document.addEventListener("keydown", function (event) {
   console.log("key down");
   if (event.ctrlKey && event.key === " ") {
-    const shortKey = document.activeElement.value;
-    replaceValue(shortKey);
+    if (
+      document.activeElement.isContentEditable ||
+      document.activeElement.tagName === "INPUT" ||
+      document.activeElement.tagName === "INPUT" ||
+      document.activeElement.type === "text" ||
+      document.activeElement.tagName === "TEXTAREA"
+    ) {
+      const shortKey = document.activeElement.value;
+      replaceValue(shortKey);
+    }
   }
 });
 

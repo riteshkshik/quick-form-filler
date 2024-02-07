@@ -1,8 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
-
   document.body.addEventListener("click", function (event) {
     if (event.target.classList.contains("edit_icon")) {
       editKeyVal.call(event.target); // Use call to set 'this' to the clicked element
+    }
+    if (event.target.classList.contains("delete_icon")) {
+      deleteKeyVal.call(event.target); 
     }
   });
 
@@ -13,7 +15,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       Object.keys(result).forEach(function (key) {
         var liElement = document.createElement("li");
-        liElement.style.setProperty("--cardColor", getRandomColor());
+        var colors = getRandomColor(); // Get colors object
+        liElement.style.setProperty("--cardColor", colors.background);
 
         var divContent = document.createElement("div");
         divContent.className = "content";
@@ -23,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
         divIcon.textContent = getRandomEmoji();
 
         var divText = document.createElement("div");
+        divText.style.color = colors.text;
         divText.innerHTML = `<div class="title">${key}</div><div class="text">${result[key]}</div>`;
 
         var divEditDeleteBtn = document.createElement("div");
@@ -34,6 +38,8 @@ document.addEventListener("DOMContentLoaded", function () {
         imgEdit.alt = "edit_icon";
         imgEdit.style.height = "35px";
         imgEdit.style.width = "35px";
+        imgEdit.style.cursor = "pointer";
+        imgEdit.style.color = colors.text; // Set text color
 
         var imgDelete = document.createElement("img");
         imgDelete.className = "delete_icon";
@@ -41,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
         imgDelete.alt = "delete_icon";
         imgDelete.style.height = "35px";
         imgDelete.style.width = "35px";
+        imgDelete.style.cursor = "pointer";
 
         divEditDeleteBtn.appendChild(imgEdit);
         divEditDeleteBtn.appendChild(imgDelete);
@@ -65,9 +72,22 @@ function getRandomColor() {
   for (var i = 0; i < 6; i++) {
     color += letters[Math.floor(Math.random() * 16)];
   }
-  return color;
-}
 
+  // Calculate luminance to determine text color
+  const getLuminance = (color) => {
+    const rgb = parseInt(color.substring(1), 16);
+    const r = (rgb >> 16) & 0xff;
+    const g = (rgb >> 8) & 0xff;
+    const b = (rgb >> 0) & 0xff;
+
+    return 0.299 * r + 0.587 * g + 0.114 * b;
+  };
+
+  const luminance = getLuminance(color);
+  const textColor = luminance > 128 ? "#000000" : "#ffffff";
+
+  return { background: color, text: textColor };
+}
 
 function getRandomEmoji() {
   var emojis = ["😀", "😎", "🚀", "🌈", "🎉", "🌟", "❤️", "🍕", "🎸", "🌺"];
@@ -77,8 +97,40 @@ function getRandomEmoji() {
   return emojis[randomIndex];
 }
 
-function editKeyVal() {
+function deleteKeyVal() {
+  var listItem = this.closest("li");
   var title = this.parentNode.parentNode.querySelector(".title").innerText;
-  var text = this.parentNode.parentNode.querySelector(".text").innerText;
-  alert(`title is ${title} and value is ${text}`);
+  //var text = this.parentNode.parentNode.querySelector(".text").innerText;
+
+  chrome.storage.local.remove(title, function(){
+    console.log("deleted!");
+    listItem.remove();
+  });
+  
+}
+
+function editKeyVal() {
+  var listItem = this.closest("li");
+  var title = this.parentNode.parentNode.querySelector(".title").innerText;  // key 
+  var text = this.parentNode.parentNode.querySelector(".text").innerText;    // value
+
+  document.getElementById("editPopup").style.display = "block";
+  document.getElementById("editKey").value = title;
+  document.getElementById("editValue").value = text;
+
+  var saveBtn = document.getElementById("saveChanges");
+
+  saveBtn.addEventListener('click', function(){
+    chrome.storage.local.remove(title); // delete old key data
+
+    var editedTitle = document.getElementById("editKey").value.trim();
+    var editedText = document.getElementById("editValue").value.trim();
+
+    chrome.storage.local.set({ [editedTitle]: editedText }, function () {
+      document.getElementById("editPopup").style.display = "none";
+      location.reload();
+    });
+  })
+
+  // alert(`title is ${title} and value is ${text}`);
 }
