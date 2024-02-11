@@ -114,10 +114,6 @@ function deleteKeyValPopup(){
 
   var confirmBtn = document.getElementById("confirmDelete");
   confirmBtn.addEventListener('click', function(){
-    
-    var title = this.parentNode.parentNode.querySelector(".title").innerText;
-    //var text = this.parentNode.parentNode.querySelector(".text").innerText;
-
     chrome.storage.local.remove(title, function () {
       listItem.remove();
       document.getElementById("deletePopup").style.display = "none";
