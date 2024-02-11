@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <script src="list.js"></script>
     <link rel="stylesheet" href="list.css" />
   </head>
@@ -24,12 +24,33 @@
           </div>
         </div>
       </li> -->
-      
     </ol>
     <div class="editPopup" id="editPopup">
+      <img
+        id="cancelBtn"
+        src="assets/cancelBtn.png"
+        alt="cancel button"
+        height="35px"
+        width="35px"
+      />
       <input type="text" id="editKey" placeholder="Edit Key" />
-      <textarea type="text" id="editValue" placeholder="Edit Value" ></textarea>
+      <textarea type="text" id="editValue" placeholder="Edit Value"></textarea>
       <button id="saveChanges">Save Changes</button>
+    </div>
+    <div class="deletePopup" id="deletePopup">
+      <img
+        id="cancelDeleteBtn"
+        src="assets/cancelBtn.png"
+        alt="cancel button"
+        height="35px"
+        width="35px"
+      />
+      <p>Are you sure you want to delete the following item?</p>
+      <div id="deleteDetails">
+        <p><strong>Key&nbsp;&nbsp;&nbsp;&nbsp;:</strong> <span id="deleteKey"></span></p>
+        <p><strong>Value&nbsp;:</strong> <span id="deleteValue"></span></p>
+      </div>
+      <button id="confirmDelete">Delete</button>
     </div>
   </body>
 </html>

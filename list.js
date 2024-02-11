@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
       editKeyVal.call(event.target); // Use call to set 'this' to the clicked element
     }
     if (event.target.classList.contains("delete_icon")) {
-      deleteKeyVal.call(event.target); 
+      deleteKeyValPopup.call(event.target); 
     }
   });
 
@@ -97,16 +97,32 @@ function getRandomEmoji() {
   return emojis[randomIndex];
 }
 
-function deleteKeyVal() {
-  var listItem = this.closest("li");
-  var title = this.parentNode.parentNode.querySelector(".title").innerText;
-  //var text = this.parentNode.parentNode.querySelector(".text").innerText;
 
-  chrome.storage.local.remove(title, function(){
-    console.log("deleted!");
-    listItem.remove();
+function deleteKeyValPopup(){
+  var listItem = this.closest("li");
+  var title = this.parentNode.parentNode.querySelector(".title").innerText; // key
+  var text = this.parentNode.parentNode.querySelector(".text").innerText; // value
+
+  document.getElementById("deletePopup").style.display = "block";
+  document.getElementById("deleteKey").innerText = title;
+  document.getElementById("deleteValue").innerText = text;
+
+  var cancelDeleteBtn = document.getElementById("cancelDeleteBtn");
+  cancelDeleteBtn.addEventListener("click", function () {
+    document.getElementById("deletePopup").style.display = "none";
   });
-  
+
+  var confirmBtn = document.getElementById("confirmDelete");
+  confirmBtn.addEventListener('click', function(){
+    
+    var title = this.parentNode.parentNode.querySelector(".title").innerText;
+    //var text = this.parentNode.parentNode.querySelector(".text").innerText;
+
+    chrome.storage.local.remove(title, function () {
+      listItem.remove();
+      document.getElementById("deletePopup").style.display = "none";
+    });
+  })
 }
 
 function editKeyVal() {
@@ -130,6 +146,11 @@ function editKeyVal() {
       document.getElementById("editPopup").style.display = "none";
       location.reload();
     });
+  })
+
+  var cancelBtn = document.getElementById("cancelBtn");
+  cancelBtn.addEventListener('click', function(){
+    document.getElementById("editPopup").style.display = "none";
   })
 
   // alert(`title is ${title} and value is ${text}`);
