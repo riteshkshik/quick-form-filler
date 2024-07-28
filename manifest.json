@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Form Filler",
+  "name": "Quick Form Filler",
   "version": "1.0",
-  "description": "Auto-fill form fields using short keys",
+  "description": "Auto-fill form fields using short keys(abbreviations)",
   "permissions": ["storage", "activeTab","input"],
   "action": {
     "default_icon": "icon.png",
